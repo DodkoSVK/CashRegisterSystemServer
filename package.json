@@ -1,0 +1,20 @@
+{
+  "name": "cashSystemServer",
+  "version": "1.0.0",
+  "description": "Web app for simulating Cash Register System with warehouse system and serve orders, backend server",
+  "main": "server.js",
+  "repository": "https://github.com/DodkoSVK/CashRegisterSystemServer.git",
+  "author": "<dominkchov@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "dotenv": "^16.4.7",
+    "express": "^4.21za.2"
+  },
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.9"
+  }
+}
