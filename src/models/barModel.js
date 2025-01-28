@@ -15,6 +15,19 @@ const getBarDB = async (sortBy) => {
     }
 }
 
+const getBarByIdDB = async (id) => {
+    try {
+        const result = await pool.query(
+            'SELECT * FROM public.bars WHERE id = $1;',
+            [id]
+        );
+        return result;
+    } catch (e) {
+        console.log(`We got a problem: ${e}`);
+        throw e;
+    }
+}
+
 const createBarDB = async (barName, barCity, barStreet, barPostal, createdBy, createDate) => {
     try {
         const result = await pool.query(
@@ -28,4 +41,27 @@ const createBarDB = async (barName, barCity, barStreet, barPostal, createdBy, cr
     }
 }
 
-module.exports = { getBarDB, createBarDB };
+const patchBarDb = async(fieldsToUpdate, valuesToUpdate) => {
+    try {
+        const results = await pool.query(`UPDATE public.bars SET ${fieldsToUpdate.join(', ')} WHERE id = $${fieldsToUpdate.length+1} RETURNING id;`, valuesToUpdate);
+        return results;        
+    } catch (e) {
+        console.log(`We got a problem: ${e}`);
+        throw e;
+    }
+}
+
+const deleteBarDB = async (id) => {
+    try {
+        const result = await pool.query(
+            'DELETE FROM public.bars WHERE id = $1 RETURNING id;',
+            [id]
+        );
+        return result;
+    } catch (e) {
+        console.log(`We got a problem: ${e}`);
+        throw e;
+    }
+}
+
+module.exports = { getBarDB, getBarByIdDB, createBarDB, patchBarDb, deleteBarDB };
