@@ -9,7 +9,8 @@
   "dependencies": {
     "dotenv": "^16.4.7",
     "express": "^4.21za.2",
-    "joi": "^17.13.3"
+    "joi": "^17.13.3",
+    "pg": "^8.13.1"
   },
   "scripts": {
     "start": "node server.js",
